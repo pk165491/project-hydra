@@ -193,26 +193,35 @@ def main():
         s.move()
         if s.body[0].pos == snack.pos:
             s.addCube()
+            s.addCube()
+            s.addCube()
             snack = cube(randomSnack(rows, s), color=(0,255,0))
+            countfordeath -= 1
         if s.body[0].pos == power.pos:
             choice = random.randint(1,2)
             if choice != 2:
                 s.addCube()
                 s.addCube()
+                s.addCube()
+                s.addCube()
                 countfordeath = countfordeath + 1
                 s.addCube()
                 power= powered(randomSnack(rows, s), color=(0,0,255))
+                message_box('Do not get too risky with these fruit', 'You could die')
             if choice == 2:
                 s.addCube()
                 s.addCube()
                 s.addCube()
+                s.addCube()
+                s.addCube()
                 power= powered(randomSnack(rows, s), color=(0,0,255))
-                countfordeath = 0
+                countfordeath = 2
+                message_box('You have gained a poison fruit', 'eat some normal fruit to heal')
             
 
         for x in range(len(s.body)):
             
-            if (s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:]))) or (countfordeath == 2):
+            if (s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:]))) or (countfordeath == 3):
                 print('Score: ', len(s.body))
                 message_box('You Lost!', 'Play again...')
                 s.reset((10,10))
